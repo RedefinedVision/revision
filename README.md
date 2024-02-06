@@ -6,7 +6,7 @@
     -->
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/RedefinedVision/revision/main/img/Banner.png">
+  <img src="https://raw.githubusercontent.com/RedefinedVision/revision/main/img/readme-banner.png">
 </p>
 
 <p align="center">
@@ -21,3 +21,10 @@
 <br>
 <hr>
 
+<p align="center">
+    <img height="48" src="https://raw.githubusercontent.com/RedefinedVision/revision/main/img/badges/ai.png">
+    <img height="48" src="https://raw.githubusercontent.com/RedefinedVision/revision/main/img/spacing.png">
+    <img height="48" src="https://raw.githubusercontent.com/RedefinedVision/revision/main/img/badges/authlock.png">
+</p>
+
+<h6 align="center">Made with ❤ by lemonekq, KubaQWI</h6>
