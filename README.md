@@ -10,11 +10,12 @@
 </p>
 
 <p align="center">
-  <h2 align="center">
+  <h2 align="left">
+    <img align="left" width="96" src="https://raw.githubusercontent.com/RedefinedVision/revision/main/img/readme-logo.png">
     revision (rɪˈvɪʒᵊn) <br>
   </h2>
-  <p align="center">
-    AI-Assisted Support System for Individuals with Visual Impairment
+  <p align="left">
+    An AI support system for the visually impaired, compatible with iGPU NUCs. Empowers with text reading, object identification, and many more features, fostering independence in a compact package.
   </p>
 </p>
 
