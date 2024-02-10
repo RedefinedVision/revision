@@ -25,6 +25,8 @@
 <p align="center">
     <img height="48" src="https://raw.githubusercontent.com/RedefinedVision/revision/main/img/badges/ai.png">
     <img height="48" src="https://raw.githubusercontent.com/RedefinedVision/revision/main/img/spacing.png">
+    <img height="48" src="https://raw.githubusercontent.com/RedefinedVision/revision/main/img/badges/explory.png">
+    <img height="48" src="https://raw.githubusercontent.com/RedefinedVision/revision/main/img/spacing.png">
     <img height="48" src="https://raw.githubusercontent.com/RedefinedVision/revision/main/img/badges/authlock.png">
 </p>
 
