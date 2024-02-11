@@ -37,5 +37,5 @@
 </p>
 
 <p align="center">
-    Made with ❤ by <a href="https://t.me/meetox80/">lemonek</a>, KubaQWI
+    Made with ❤ by <a href="https://t.me/meetox80/">lemonek</a>, <a href="https://t.me/kubus1205/">KubaQWI</a>
 </p>
