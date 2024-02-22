@@ -1,0 +1,274 @@
+﻿<Window x:Class="revision_app.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:revision_app"
+        mc:Ignorable="d"
+        Title="RedefinedVision" Width="1280" Height="720" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="{x:Null}">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <!-- Fuck focusing, its a bug - rvyk -->
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        </Style>
+    </Window.Resources>
+
+    <Grid Width="1250" Height="685">
+        <Rectangle Width="1250" Height="685" RadiusX="20" RadiusY="20">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                    <GradientStop Color="#FF100D0D"/>
+                    <GradientStop Color="#FF130808" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <Grid x:Name="navbar" Height="60" VerticalAlignment="Top" Margin="0, 25, 0, 0">
+            <Rectangle Fill="#FF100F0F" Stroke="#19FFFFFF" RadiusX="10" RadiusY="10" Margin="20, 0, 20, 0"/>
+
+            <StackPanel HorizontalAlignment="Left" Margin="50,0,50,0" VerticalAlignment="Center" Orientation="Horizontal">
+
+                <Grid Background="#01000000" Cursor="Hand"> <!-- Mouse reset fix using a transparent grid -->
+                    <Path x:Name="navbar_logo" Fill="#FFE4E9EF" Width="28" Height="28" Stretch="Fill" Data="M4.10051 23.8995C6.72601 26.525 10.287 28 14 28C17.713 28 21.274 26.525 23.8995 23.8995C26.525 21.274 28 17.713 28 14C28 10.287 26.525 6.72601 23.8995 4.10051C21.274 1.475 17.713 0 14 0C10.287 0 6.72601 1.475 4.10051 4.10051C1.475 6.72601 0 10.287 0 14C0 17.713 1.475 21.274 4.10051 23.8995ZM13.2885 18.6327L5.56223 15.1988C4.52201 14.7386 4.52201 13.2614 5.56223 12.8012L13.2885 9.36735C13.7448 9.16626 14.2552 9.16626 14.7115 9.36735L22.4378 12.8012C23.478 13.2614 23.478 14.7386 22.4378 15.1988L14.7115 18.6327C14.2591 18.8376 13.7448 18.8337 13.2885 18.6327ZM15.2374 15.2374C15.5656 14.9092 15.75 14.4641 15.75 14C15.75 13.5359 15.5656 13.0908 15.2374 12.7626C14.9093 12.4344 14.4641 12.25 14 12.25C13.5359 12.25 13.0908 12.4344 12.7626 12.7626C12.4344 13.0908 12.25 13.5359 12.25 14C12.25 14.4641 12.4344 14.9092 12.7626 15.2374C13.0908 15.5656 13.5359 15.75 14 15.75C14.4641 15.75 14.9093 15.5656 15.2374 15.2374Z" RenderTransformOrigin="0.5,0.5">
+                        <Path.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="1" ScaleY="1" x:Name="navbar_logo_scale"/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="0" x:Name="navbar_logo_rotate"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Path.RenderTransform>
+                    </Path>
+
+                    <Grid.Triggers>
+                        <EventTrigger RoutedEvent="Grid.MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <Storyboard x:Name="navbar_logo_mousein_rotate">
+                                        <DoubleAnimation From="0" To="180" Duration="00:00:1" BeginTime="00:00:00"
+                                        Storyboard.TargetName="navbar_logo_rotate" 
+                                        Storyboard.TargetProperty="Angle">
+                                            <DoubleAnimation.EasingFunction>
+                                                <CubicEase EasingMode="EaseOut"></CubicEase>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+
+                                    <Storyboard x:Name="navbar_logo_mousein_scale">
+                                        <DoubleAnimation From="1" To="1.15" Duration="00:00:1" BeginTime="00:00:00"
+                                        Storyboard.TargetName="navbar_logo_scale" 
+                                        Storyboard.TargetProperty="ScaleX">
+                                            <DoubleAnimation.EasingFunction>
+                                                <CubicEase EasingMode="EaseOut"></CubicEase>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <DoubleAnimation From="1" To="1.15" Duration="00:00:1" BeginTime="00:00:00"
+                                        Storyboard.TargetName="navbar_logo_scale" 
+                                        Storyboard.TargetProperty="ScaleY">
+                                            <DoubleAnimation.EasingFunction>
+                                                <CubicEase EasingMode="EaseOut"></CubicEase>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="Grid.MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <Storyboard x:Name="navbar_logo_mouseout_rotate">
+                                        <DoubleAnimation From="180" To="0" Duration="00:00:1" BeginTime="00:00:00"
+                                        Storyboard.TargetName="navbar_logo_rotate" 
+                                        Storyboard.TargetProperty="Angle">
+                                            <DoubleAnimation.EasingFunction>
+                                                <CubicEase EasingMode="EaseOut"></CubicEase>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+
+                                    <Storyboard x:Name="navbar_logo_mouseout_scale">
+                                        <DoubleAnimation From="1.15" To="1" Duration="00:00:1" BeginTime="00:00:00"
+                                        Storyboard.TargetName="navbar_logo_scale" 
+                                        Storyboard.TargetProperty="ScaleX">
+                                            <DoubleAnimation.EasingFunction>
+                                                <CubicEase EasingMode="EaseOut"></CubicEase>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <DoubleAnimation From="1.15" To="1" Duration="00:00:1" BeginTime="00:00:00"
+                                        Storyboard.TargetName="navbar_logo_scale" 
+                                        Storyboard.TargetProperty="ScaleY">
+                                            <DoubleAnimation.EasingFunction>
+                                                <CubicEase EasingMode="EaseOut"></CubicEase>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Grid.Triggers>
+                </Grid>
+
+                <StackPanel x:Name="navbar_buttons" Margin="20, 0, 30, 0" Orientation="Horizontal">
+                    <Button x:Name="navbar_buttons_main" Width="40" Height="40" Background="#FF333838" Cursor="Hand" Margin="10,0,0,0" Click="NavigationChanged" RenderTransformOrigin="0.5,0.5">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="7.5"/>
+                            </Style>
+                        </Button.Resources>
+                        <Button.BorderBrush>
+                            <LinearGradientBrush EndPoint="0.5,0.5" StartPoint="1,1">
+                                <GradientStop Color="Black"/>
+                                <GradientStop Color="#3FFFFFFF" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.BorderBrush>
+
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform x:Name="navbar_buttons_main_scale" ScaleX="1" ScaleY="1"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                        <Button.Triggers>
+                            <EventTrigger RoutedEvent="Path.MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <Storyboard>
+                                            <DoubleAnimation From="1" To="1.10" Duration="00:00:1" BeginTime="00:00:00"
+                                                Storyboard.TargetName="navbar_buttons_main_scale" 
+                                                Storyboard.TargetProperty="ScaleX">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <CubicEase EasingMode="EaseOut"></CubicEase>
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                            <DoubleAnimation From="1" To="1.10" Duration="00:00:1" BeginTime="00:00:00"
+                                                Storyboard.TargetName="navbar_buttons_main_scale" 
+                                                Storyboard.TargetProperty="ScaleY">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <CubicEase EasingMode="EaseOut"></CubicEase>
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+
+                            <EventTrigger RoutedEvent="Path.MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <Storyboard>
+                                            <DoubleAnimation From="1.10" To="1" Duration="00:00:1" BeginTime="00:00:00"
+                                                Storyboard.TargetName="navbar_buttons_main_scale" 
+                                                Storyboard.TargetProperty="ScaleX">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <CubicEase EasingMode="EaseOut"></CubicEase>
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                            <DoubleAnimation From="1.10" To="1" Duration="00:00:1" BeginTime="00:00:00"
+                                                Storyboard.TargetName="navbar_buttons_main_scale" 
+                                                Storyboard.TargetProperty="ScaleY">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <CubicEase EasingMode="EaseOut"></CubicEase>
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Button.Triggers>
+
+                        <Path Stretch="Uniform" Width="16" Fill="White" Opacity="0.75" Data="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z"/>
+                    </Button>
+
+                    <Button x:Name="navbar_buttons_settings" Width="40" Height="40" Background="#FF1B1E1E" Cursor="Hand" Margin="10,0,0,0" Click="NavigationChanged" RenderTransformOrigin="0.5,0.5">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="7.5"/>
+                            </Style>
+                        </Button.Resources>
+                        <Button.BorderBrush>
+                            <LinearGradientBrush EndPoint="0.5,0.5" StartPoint="1,1">
+                                <GradientStop Color="Black"/>
+                                <GradientStop Color="#3FFFFFFF" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.BorderBrush>
+
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform x:Name="navbar_buttons_settings_scale" ScaleX="1" ScaleY="1"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                        <Button.Triggers>
+                            <EventTrigger RoutedEvent="Path.MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <Storyboard>
+                                            <DoubleAnimation From="1" To="1.10" Duration="00:00:1" BeginTime="00:00:00"
+                                            Storyboard.TargetName="navbar_buttons_settings_scale" 
+                                            Storyboard.TargetProperty="ScaleX">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <CubicEase EasingMode="EaseOut"></CubicEase>
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                            <DoubleAnimation From="1" To="1.10" Duration="00:00:1" BeginTime="00:00:00"
+                                            Storyboard.TargetName="navbar_buttons_settings_scale" 
+                                            Storyboard.TargetProperty="ScaleY">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <CubicEase EasingMode="EaseOut"></CubicEase>
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+
+                            <EventTrigger RoutedEvent="Path.MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <Storyboard>
+                                            <DoubleAnimation From="1.10" To="1" Duration="00:00:1" BeginTime="00:00:00"
+                                            Storyboard.TargetName="navbar_buttons_settings_scale" 
+                                            Storyboard.TargetProperty="ScaleX">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <CubicEase EasingMode="EaseOut"></CubicEase>
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                            <DoubleAnimation From="1.10" To="1" Duration="00:00:1" BeginTime="00:00:00"
+                                            Storyboard.TargetName="navbar_buttons_settings_scale" 
+                                            Storyboard.TargetProperty="ScaleY">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <CubicEase EasingMode="EaseOut"></CubicEase>
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Button.Triggers>
+
+                        <Path Stretch="Uniform" Width="16" Fill="White" Opacity="0.75" Data="M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4L83.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C64.6 273.1 64 264.6 64 256s.6-17.1 1.7-25.4L22.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z"/>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
