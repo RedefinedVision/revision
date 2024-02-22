@@ -1,0 +1,44 @@
+name: Build revision-app
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '3.1.x'
+
+    - name: Restore dependencies
+      run: dotnet restore ./src/RedefinedVision.sln
+
+    - name: Build
+      run: dotnet build ./src/RedefinedVision.sln --configuration Release --no-restore
+
+    - name: Get commit SHA
+      id: get-sha
+      run: echo "::set-output name=sha::$(git rev-parse --short HEAD)"
+
+    - name: Get file size
+      id: get-size
+      run: |
+        $size = (Get-Item ./src/bin/x64/Release/RedefinedVision.exe).length / 1MB
+        echo "::set-output name=size::$(("{0:N2}" -f $size))"
+
+    - name: Rename output file
+      run: |
+        mv ./src/bin/x64/Release/RedefinedVision.exe ./src/bin/x64/Release/revision-${{ steps.get-sha.outputs.sha }}-${{ steps.get-size.outputs.size }}MB.exe
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: output
+        path: ./src/bin/x64/Release/revision-${{ steps.get-sha.outputs.sha }}-${{ steps.get-size.outputs.size }}MB.exe
