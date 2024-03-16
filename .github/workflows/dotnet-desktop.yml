@@ -31,7 +31,7 @@ jobs:
     - name: DEBUG, Show directory content
       id: get-directory
       run: |
-        echo "List files in ./src/bin/Release/"
+        echo "List files in ./src/bin/x64/Release/"
         ls ./src/bin/Release/
 
     - name: Get file size
