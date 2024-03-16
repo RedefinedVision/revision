@@ -21,7 +21,7 @@ jobs:
       run: dotnet restore ./src/RedefinedVision.sln
 
     - name: Build
-      run: dotnet build ./src/revision_app.csproj --configuration Release --no-restore
+      run: dotnet build ./src/revision_app.csproj --configuration Release --runtime win-x64 --no-restore
 
     - name: Get commit SHA
       id: get-sha
@@ -30,15 +30,9 @@ jobs:
     - name: Get file size
       id: get-size
       run: |
-        $size = (Get-Item ./src/bin/x64/Release/RedefinedVision.exe).length / 1MB
+        $size = (Get-Item ./src/bin/Release/netcoreapp3.1/win-x64/revision_app.exe).length / 1MB
         echo "::set-output name=size::$(("{0:N2}" -f $size))"
 
     - name: Rename output file
       run: |
-        mv ./src/bin/x64/Release/RedefinedVision.exe ./src/bin/x64/Release/revision-${{ steps.get-sha.outputs.sha }}-${{ steps.get-size.outputs.size }}MB.exe
-
-    - name: Upload artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: output
-        path: ./src/bin/x64/Release/revision-${{ steps.get-sha.outputs.sha }}-${{ steps.get-size.outputs.size }}MB.exe
+        mv ./src/bin/Release/netcoreapp3.1/win-x64/revision_app.exe ./src/bin/Release/netcoreapp3.1/win-x64/revision
