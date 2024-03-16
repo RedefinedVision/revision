@@ -12,16 +12,16 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Setup .NET
+    - name: Setup .NET Framework
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '3.1.x'
+        dotnet-version: '4.7.x'
 
     - name: Restore dependencies
-      run: dotnet restore ./src/RedefinedVision.sln
+      run: msbuild -t:restore ./src/revision_app.csproj
 
     - name: Build
-      run: dotnet build ./src/revision_app.csproj --configuration Release --runtime win-x64 --no-restore
+      run: msbuild ./src/revision_app.csproj /p:Configuration=Release /p:Platform=x64
 
     - name: Get commit SHA
       id: get-sha
@@ -30,9 +30,15 @@ jobs:
     - name: Get file size
       id: get-size
       run: |
-        $size = (Get-Item ./src/bin/Release/netcoreapp3.1/win-x64/revision_app.exe).length / 1MB
+        $size = (Get-Item ./src/bin/Release/revision_app.exe).length / 1MB
         echo "::set-output name=size::$(("{0:N2}" -f $size))"
 
     - name: Rename output file
       run: |
-        mv ./src/bin/Release/netcoreapp3.1/win-x64/revision_app.exe ./src/bin/Release/netcoreapp3.1/win-x64/revision
+        mv ./src/bin/Release/revision_app.exe ./src/bin/Release/revision-${{ steps.get-sha.outputs.sha }}-${{ steps.get-size.outputs.size }}MB.exe
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: output
+        path: ./src/bin/Release/revision-${{ steps.get-sha.outputs.sha }}-${{ steps.get-size.outputs.size }}MB.exe
