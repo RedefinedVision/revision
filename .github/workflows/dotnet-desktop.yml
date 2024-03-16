@@ -31,12 +31,12 @@ jobs:
     - name: Get file size
       id: get-size
       run: |
-        $size = (Get-Item ./src/bin/Release/revision_app.exe).length / 1MB
+        $size = (Get-Item ./src/bin/Release/RedefinedVision.exe).length / 1MB
         echo "::set-output name=size::$(("{0:N2}" -f $size))"
 
     - name: Rename output file
       run: |
-        mv ./src/bin/Release/revision_app.exe ./src/bin/Release/revision-${{ steps.get-sha.outputs.sha }}-${{ steps.get-size.outputs.size }}MB.exe
+        mv ./src/bin/Release/RedefinedVision.exe ./src/bin/Release/revision-${{ steps.get-sha.outputs.sha }}-${{ steps.get-size.outputs.size }}MB.exe
 
     - name: Upload artifact
       uses: actions/upload-artifact@v2
