@@ -47,5 +47,5 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
-        name: output
+        name: revision-${{ steps.get-sha.outputs.sha }}-${{ steps.get-size.outputs.size }}
         path: ./src/bin/x64/Release/revision-${{ steps.get-sha.outputs.sha }}-${{ steps.get-size.outputs.size }}MB.exe
