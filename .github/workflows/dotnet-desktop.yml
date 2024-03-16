@@ -21,7 +21,7 @@ jobs:
       run: dotnet restore ./src/RedefinedVision.sln
 
     - name: Build
-      run: dotnet build ./src/RedefinedVision.sln --configuration Release --no-restore
+      run: dotnet build ./src/revision_app.csproj --configuration Release --no-restore
 
     - name: Get commit SHA
       id: get-sha
